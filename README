@@ -1,0 +1,8 @@
+Docker instructions
+
+docker build --platform linux/arm64 -t ros2_vnc .
+
+docker run -it --rm --name ros2_vnc --p 5901:5901 ros2_vnc
+
+docker image/container ls/rm
+
