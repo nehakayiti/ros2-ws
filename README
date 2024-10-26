@@ -4,5 +4,8 @@ Docker instructions
 docker build --no-cache --progress=plain -t ros2_gui . 
 docker run -it --rm --name ros2_gui_container -p 5900:5900 ros2_gui
 
+Mount the workspace from the host machine to the container
+docker run -it --rm --name ros2_gui_container -p 5900:5900 -v /Users/jose/ros2_ws:/root/ros2_ws ros2_gui
+
 # Running VNC server on your MAC 
 use tigerVNCViewer downoad and install it.

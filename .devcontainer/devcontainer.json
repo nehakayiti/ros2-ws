@@ -1,0 +1,34 @@
+{
+    "name": "ROS2 + Gazebo Dev Container",
+    "build": {
+        "dockerfile": "../Dockerfile"
+    },
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "terminal.integrated.shell.linux": "/bin/bash"
+            },
+            "extensions": [
+                "ms-iot.vscode-ros",
+                "ms-vscode.cpptools",
+                "ms-python.python",
+                "twxs.cmake",
+                "ms-azuretools.vscode-docker"
+            ]
+        }
+    },
+    "remoteUser": "root",
+    "postCreateCommand": "source /opt/ros/humble/setup.bash && rosdep update",
+    "forwardPorts": [5900],
+    "mounts": [
+        "source=${localWorkspaceFolder}/ros2_ws,target=/root/ros2_ws,type=bind"
+    ],
+    "remoteEnv": {
+        "DISPLAY": "${env:DISPLAY}"
+    },
+    "runArgs": [
+        "--network=host",
+        "--env=DISPLAY",
+        "--privileged"
+    ]
+}
