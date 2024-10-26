@@ -1,11 +1,30 @@
 Docker instructions
 
-#docker build --platform linux/arm64 -t ros2_vnc .
+RUNNING THE CONTAINER
+docker run -it --rm --name ros2_gui_container -p 5900:5900 -v $HOME/ros2:/root/ros2 ros2_gui
+
+# Running VNC server on your MAC 
+download tigerVNCViewer and install it on your MAC
+Open the VNC Viewer and connect to localhost:5900
+Open xterm on the VNC Viewer and you should see the ROS2 environment ready
+You can now run your ros2 commands on the container, rviz, gazebo, etc.
+Your development environment should be mounted on the container.
+
+-- Detached container
+1. docker run -d --name ros2_gui_container -v $HOME/ros2:/root/ros2 -p 5900:5900 ros2_gui
+2. Once the container is running:
+    docker exec -it ros2_gui_container /bin/bash
+3. 
+
+
+BUILDING THE CONTAINER
+docker build --progress=plain -t ros2_gui . 
 docker build --no-cache --progress=plain -t ros2_gui . 
 docker run -it --rm --name ros2_gui_container -p 5900:5900 ros2_gui
+
 
 Mount the workspace from the host machine to the container
 docker run -it --rm --name ros2_gui_container -p 5900:5900 -v /Users/jose/ros2_ws:/root/ros2_ws ros2_gui
 
-# Running VNC server on your MAC 
-use tigerVNCViewer downoad and install it.
+
+

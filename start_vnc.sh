@@ -15,7 +15,10 @@ startxfce4 &
 sleep 2
 
 # Start VNC server
-x11vnc -display :1 -forever -shared -rfbport 5900 -nopw -xkb&
+#x11vnc -display :1 -forever -shared -rfbport 5900 -nopw -xkb
+
+# Start tmux session for VNC server
+tmux new-session -d -s vnc "x11vnc -display :1 -forever -shared -rfbport 5900"
 
 # Keep the container running and provide a shell
 exec /bin/bash

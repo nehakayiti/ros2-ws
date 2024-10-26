@@ -43,6 +43,8 @@ RUN apt-get update -o Acquire::Retries=5 -o Acquire::http::Timeout="60" && \
 RUN locale-gen en_US en_US.UTF-8
 ENV LANG=en_US.UTF-8
 
+RUN apt-get update && apt-get install -y tmux
+
 # Add ROS2 apt repository
 RUN curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | \
     gpg --dearmor -o /usr/share/keyrings/ros-archive-keyring.gpg && \
