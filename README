@@ -1,8 +1,8 @@
 Docker instructions
 
-docker build --platform linux/arm64 -t ros2_vnc .
+#docker build --platform linux/arm64 -t ros2_vnc .
+docker build --no-cache --progress=plain -t ros2_gui . 
+docker run -it --rm --name ros2_gui_container -p 5900:5900 ros2_gui
 
-docker run -it --rm --name ros2_vnc --p 5901:5901 ros2_vnc
-
-docker image/container ls/rm
-
+# Running VNC server on your MAC 
+use tigerVNCViewer downoad and install it.

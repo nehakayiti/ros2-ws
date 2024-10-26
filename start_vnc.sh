@@ -2,20 +2,20 @@
 
 export DISPLAY=:1
 
-# Start virtual framebuffer
+# Start XVFB with the desired screen resolution
 Xvfb :1 -screen 0 1280x800x24 &
 
-# Wait for Xvfb to start
-sleep 3
+# Wait for XVFB to start
+sleep 2
 
 # Start XFCE desktop session
 startxfce4 &
 
 # Wait for desktop to start
-sleep 3
+sleep 2
 
 # Start VNC server
-x11vnc -display :1 -rfbauth ~/.vnc/passwd -forever -shared &
+x11vnc -display :1 -forever -shared -rfbport 5900 -nopw -xkb&
 
-# Keep the container running
-tail -f /dev/null
+# Keep the container running and provide a shell
+exec /bin/bash
