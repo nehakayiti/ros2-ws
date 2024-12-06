@@ -6,71 +6,97 @@ Be remote controlled from a phone, with camera feedback (teleoperation)
 Use lidar and SLAM to generate a map of a room and navigate autonomously
 Use a camera with OpenCV to detect objects and follow them
 
-Bill of Materials
+---- Docker Intro -----
+Commands
+docker image ls
+docker container ls
+docker run
+docker ps
+docker exec -it <container_id> /bin/bash
+docker stop <container_id>
+docker rm <container_id>
 
-Listed below is a rough bill of materials. As the project progresses I’ll try to return here with more details, and links to the posts for that section which will go into depth.
+#ROS2 Humble Setup
+docker pull ros:humble-ros-core
+docker run -it --rm --name ros-humble-container -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix ros:humble-ros-core
 
-Please be aware that the links below are examples only! Not all of these links are to the exact items I am using, and I can't make any guarantees as to the quality of the products or sellers. Also, some of the links included below (marked with a *) are affiliate links, and using those ones will grant me a small commission which helps to keep producing this content!
+#ROS2 Humble Setup with VNC
+docker run -it --rm --name ros-humble-container-vnc -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -p 5900:5900 ros:humble-ros-core   
 
-I’ve deliberately not included pricing, due to the large and frequent variation in currencies, vendors, and general price fluctuations, so I encourage you to do your own research and figure out the costs. If you’re doing the project with others it may be worth looking into bulk orders - it can sometimes save a lot of money!
 
-Item	Notes	Image	Link
-Core			
-Raspberry Pi 4B	Other single-board/USFF computers may also be suitable, or even better (e.g. Jetson, NUC). Ensure the system is 64-bit (ARM or x86) and ideally has at least 4GB RAM.	
 
-Power			
-3S LiPo Battery	I’ll be basing my build around a ~12V source. You may prefer a different voltage, chemistry, or form factor (if you know what you’re doing).	
+----- NOT USING THIS -----
+Install VMWare Fusion 13 on your Mac
+https://www.techspot.com/downloads/downloadnow/2755/?evp=b9879fcc0383c08cef26189e2277a4ec&file=11022
 
-HobbyKing
-5V Regulator	Switch-mode buck converter from 12V (or whatever you have) to 5V. Ensure it is capable of sufficient current.		
-Main power switch		
+When selecting the OS, ensure Ubuntu 64-bit is selected, NOT Ubuntu.
 
-SparkFun
-Momentary switch (Pi soft power)		
 
-Adafruit
-Terminal strip			
-Various wires			
-Appropriate connectors	Check the current ratings		
-Motor/Drive system	My drive system will be based on brushed DC motors with encoders, since these can be had cheaply, are simple to use, and pretty robust. If you want to use something more advanced (e.g. Dynamixels, ODrive w/ BLDC), be prepared to write some code yourself. Time and money permitting, I’d like to explore these as upgrades down the track.		
-Breadboard			
-Arduino (e.g. Nano)	Any of the normal chip Arduinos or clones will be fine, I recommend the Nano form factor so it can be placed on a breadboard, but the regular form factor with no breadboard is probably also fine.	
+Setting up your development environment & Docker instructions
 
-Banggood*
-2x12V DC Motors w/ encoders	Make sure it has encoders as we'll need them for speed feedback!	
+RUNNING THE CONTAINER
+    docker run -it --rm --name ros2_gui_container -p 5900:5900 -v $HOME/ros2:/root/ros2 ros2_gui
 
-Banggood
-Motor driver board	I’ll be using a popular driver board with the cheap-and-nasty L298N driver. It’s pretty weak but it’ll work for my needs. If your robot is beefier you may want to check out something based on the BTS7960, but that will also require some additional coding.	
+Connect to the container & getting a bash shell
+    docker exec -it ros2_gui_container /bin/bash
 
-Banggood*
-Motor mounts	Mine came bundled with the motor		
-Wheels	Mine came bundled with the motor		
-Sensors			
-Camera	I’ll be using the official Raspberry Pi Camera (v2), but one of its many cheap clones will probably work fine. There are also USB cameras that will work but you’ll need to find a driver.	
+# Running VNC server on your MAC 
+download tigerVNCViewer and install it on your MAC
+Open the VNC Viewer and connect to localhost:5900
+Open xterm on the VNC Viewer and you should see the ROS2 environment ready
+You can now run your ros2 commands on the container, rviz, gazebo, etc.
+Your development environment should be mounted on the container.
 
-Official Site
-Lidar	I’ll be using the popular RPLidar A1, but there are a few similar models out there, you’ll just have to find the right driver.	
+** Getting your mobile-bot simulation running **
+1. Pre-requisites:
+    - You connected to the container using the instructions above
+    - TigerVNCViewer is running and connected to the container
+    - Open a terminal on the VNC Viewer
+2. Running some basic ros2 commands (cd ~/ros2/ros2-ws/)
+    - ros2 topic list
+3. Launching the simulation
+    - ros2 launch my_mobile_ros_bot rsp.launch.py use_sim_time:=true
+    - rviz2 -d ./config/view_bot.rviz 
+    - If you don't see the wheels on the bot then run in another terminal:
+        - ros2 run joint_state_publisher_gui joint_state_publisher_gui
+    - Starting Gazebo
+        - check sim_time parameter
+        - ros2 param get /robot_state_publisher use_sim_time
+        - if it is not true, then run:
+            - ros2 param set /robot_state_publisher use_sim_time true
+        - Launch Gazebo:
+            - ros2 run ros_gz_sim create -topic robot_description -name bot_name
+            - ros2 launch ros_ign_gazebo ign_gazebo.launch.py
+        - Spawn our robot using the spawn script
+            ros2 run ros_gz_sim create -topic robot_description -name bot_name
 
-Banggood
-Depth Camera	As an alternative to the Pi camera (and possibly even an alternative to the Lidar) I’m hoping to demonstrate the use of a depth camera, in particular the Luxonis OAK-D Lite. Depth cameras have all the benefits of a camera, with the addition that we can do some SLAM and 3D reconstruction more easily.	
 
-Luxonis
-Chassis	These are some of the parts I'll have, but I encourage you to come up with your own design!		
-Main structure			
-Caster wheel/s		
+-- Detached container
+1. docker run -d --name ros2_gui_container -v $HOME/ros2:/root/ros2 -p 5900:5900 ros2_gui
+2. Once the container is running:
+    docker exec -it ros2_gui_container /bin/bash
+3. 
 
-Screws, bolts, cable ties, etc.			
-Useful extra things			
-Display	The link is just an example (not the one I've used). There are a variety of sizes, resolutions, interfaces (HDMI/DSI), and touch types out there to choose from.	
 
-Banggood*
-Panel mount connectors	e.g. USB, HDMI	
+BUILDING THE CONTAINER
+docker build --progress=plain -t ros2_gui . 
+docker build --no-cache --progress=plain -t ros2_gui . 
+docker run -it --rm --name ros2_gui_container -p 5900:5900 ros2_gui
 
-Adafruit
-Battery charger		
 
-Banggood*
-12V Power supply	You may be able to use the same one as the battery charger (check voltages and currents)		
-Bluetooth game controller	I've included a link to the same controller I'm using (not the same seller). I wouldn't necessarily recommend it though, so maybe shop around...	
+Mount the workspace from the host machine to the container
+docker run -it --rm --name ros2_gui_container -p 5900:5900 -v /Users/jose/ros2_ws:/root/ros2_ws ros2_gui
 
-AliExpress
+
+
+--- GAZEBO STEPS ---
+
+sudo sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list'
+sudo wget https://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
+
+sudo apt-get update && \
+sudo apt-get install -y lsb-release wget gnupg && \
+sudo apt-get install -y gz-garden && \
+sudo apt-get install -y libignition-transport11-dev && \
+sudo apt-get install -y libignition-gazebo6-dev && \
+sudo apt-get install -y libgflags-dev
