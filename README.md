@@ -6,6 +6,9 @@ Be remote controlled from a phone, with camera feedback (teleoperation)
 Use lidar and SLAM to generate a map of a room and navigate autonomously
 Use a camera with OpenCV to detect objects and follow them
 
+A major inspiration for this project is Josh Newans (Articulated Robotics) tutorials on building a mobile robot from scratch. I learned a lot from his tutorials and highly recommend them. Without Josh's tutorials, this project would not be possible and I would not have learned ROS2 and Gazebo as much as I have.
+
+
 ---- Docker Intro -----
 Commands
 docker image ls
