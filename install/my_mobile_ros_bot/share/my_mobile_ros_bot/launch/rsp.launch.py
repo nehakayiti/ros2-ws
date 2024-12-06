@@ -1,0 +1,1 @@
+/root/ros2/ros2-ws/launch/rsp.launch.py

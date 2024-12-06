@@ -65,9 +65,26 @@ RUN apt-get install -y --no-install-recommends gazebo
 # Clean up apt cache to reduce image size
 RUN rm -rf /var/lib/apt/lists/*
 
+# Install necessary build tools for ROS2
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    python3-colcon-common-extensions \
+    python3-rosdep \
+    python3-vcstool \
+    python3-pip \
+    python3-rosinstall-generator \
+    && rosdep init \
+    && rosdep update
+
+# Update and install additional ROS2 packages
+RUN apt-get update && apt-get install -y --no-install-recommends \
+ros-humble-xacro \
+ros-humble-joint-state-publisher-gui
+
 # Source ROS2 setup script
 SHELL ["/bin/bash", "-c"]
 RUN echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
+RUN echo "source ~/ros2/ros2-ws/install/setup.bash" >> ~/.bashrc
+RUN echo "source ~/ros2/ignition_ws/src/ros_ign/install/setup.bash" >> ~/.bashrc
 
 # Set up VNC server password
 RUN mkdir -p ~/.vnc && \
@@ -82,3 +99,17 @@ RUN chmod +x /usr/local/bin/start_vnc.sh
 
 # Set default command
 CMD ["/usr/local/bin/start_vnc.sh"]
+
+RUN sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list' && \
+    wget https://packages.osrfoundation.org/gazebo.key -O - | apt-key add -
+
+# Install necessary packages
+RUN apt-get update && \
+    apt-get install -y lsb-release wget gnupg && \
+    apt-get install -y gz-garden && \
+    apt-get install -y libignition-transport11-dev && \
+    apt-get install -y libignition-gazebo6-dev && \
+    apt-get install -y libgflags-dev
+
+RUN apt update && \
+    apt install -y python3-ament-index 

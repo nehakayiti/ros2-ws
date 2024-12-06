@@ -1,0 +1,28 @@
+[0.034s] Invoking command in '/root/ros2/ros2-ws/build/my_mobile_ros_bot': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /root/ros2/ros2-ws/build/my_mobile_ros_bot -- -j8 -l8
+[0.068s] Invoked command in '/root/ros2/ros2-ws/build/my_mobile_ros_bot' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /root/ros2/ros2-ws/build/my_mobile_ros_bot -- -j8 -l8
+[0.110s] Invoking command in '/root/ros2/ros2-ws/build/my_mobile_ros_bot': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /root/ros2/ros2-ws/build/my_mobile_ros_bot
+[0.116s] -- Install configuration: ""
+[0.117s] -- Execute custom install script
+[0.119s] -- Up-to-date symlink: /root/ros2/ros2-ws/install/my_mobile_ros_bot/share/my_mobile_ros_bot/config/empty.yaml
+[0.122s] -- Up-to-date symlink: /root/ros2/ros2-ws/install/my_mobile_ros_bot/share/my_mobile_ros_bot/config/view_bot.rviz
+[0.124s] -- Up-to-date symlink: /root/ros2/ros2-ws/install/my_mobile_ros_bot/share/my_mobile_ros_bot/description/inertial_macros.xacro
+[0.124s] -- Up-to-date symlink: /root/ros2/ros2-ws/install/my_mobile_ros_bot/share/my_mobile_ros_bot/description/robot.urdf.xacro
+[0.125s] -- Up-to-date symlink: /root/ros2/ros2-ws/install/my_mobile_ros_bot/share/my_mobile_ros_bot/description/robot_core.xacro
+[0.126s] -- Up-to-date symlink: /root/ros2/ros2-ws/install/my_mobile_ros_bot/share/my_mobile_ros_bot/launch/rsp.launch.py
+[0.126s] -- Up-to-date symlink: /root/ros2/ros2-ws/install/my_mobile_ros_bot/share/my_mobile_ros_bot/worlds/empty.world
+[0.127s] -- Up-to-date symlink: /root/ros2/ros2-ws/install/my_mobile_ros_bot/share/ament_index/resource_index/package_run_dependencies/my_mobile_ros_bot
+[0.128s] -- Up-to-date symlink: /root/ros2/ros2-ws/install/my_mobile_ros_bot/share/ament_index/resource_index/parent_prefix_path/my_mobile_ros_bot
+[0.129s] -- Up-to-date symlink: /root/ros2/ros2-ws/install/my_mobile_ros_bot/share/my_mobile_ros_bot/environment/ament_prefix_path.sh
+[0.130s] -- Up-to-date symlink: /root/ros2/ros2-ws/install/my_mobile_ros_bot/share/my_mobile_ros_bot/environment/ament_prefix_path.dsv
+[0.131s] -- Up-to-date symlink: /root/ros2/ros2-ws/install/my_mobile_ros_bot/share/my_mobile_ros_bot/environment/path.sh
+[0.140s] -- Up-to-date symlink: /root/ros2/ros2-ws/install/my_mobile_ros_bot/share/my_mobile_ros_bot/environment/path.dsv
+[0.141s] -- Up-to-date symlink: /root/ros2/ros2-ws/install/my_mobile_ros_bot/share/my_mobile_ros_bot/local_setup.bash
+[0.141s] -- Up-to-date symlink: /root/ros2/ros2-ws/install/my_mobile_ros_bot/share/my_mobile_ros_bot/local_setup.sh
+[0.141s] -- Up-to-date symlink: /root/ros2/ros2-ws/install/my_mobile_ros_bot/share/my_mobile_ros_bot/local_setup.zsh
+[0.147s] -- Up-to-date symlink: /root/ros2/ros2-ws/install/my_mobile_ros_bot/share/my_mobile_ros_bot/local_setup.dsv
+[0.147s] -- Symlinking: /root/ros2/ros2-ws/install/my_mobile_ros_bot/share/my_mobile_ros_bot/package.dsv
+[0.166s] -- Up-to-date symlink: /root/ros2/ros2-ws/install/my_mobile_ros_bot/share/ament_index/resource_index/packages/my_mobile_ros_bot
+[0.173s] -- Up-to-date symlink: /root/ros2/ros2-ws/install/my_mobile_ros_bot/share/my_mobile_ros_bot/cmake/my_mobile_ros_botConfig.cmake
+[0.174s] -- Up-to-date symlink: /root/ros2/ros2-ws/install/my_mobile_ros_bot/share/my_mobile_ros_bot/cmake/my_mobile_ros_botConfig-version.cmake
+[0.176s] -- Up-to-date symlink: /root/ros2/ros2-ws/install/my_mobile_ros_bot/share/my_mobile_ros_bot/package.xml
+[0.180s] Invoked command in '/root/ros2/ros2-ws/build/my_mobile_ros_bot' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /root/ros2/ros2-ws/build/my_mobile_ros_bot

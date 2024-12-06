@@ -1,0 +1,6 @@
+Invoking command in '/root/ros2/ros2-ws/build/my_mobile_ros_bot': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /root/ros2/ros2-ws -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/root/ros2/ros2-ws/install/my_mobile_ros_bot
+Invoked command in '/root/ros2/ros2-ws/build/my_mobile_ros_bot' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /root/ros2/ros2-ws -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/root/ros2/ros2-ws/install/my_mobile_ros_bot
+Invoking command in '/root/ros2/ros2-ws/build/my_mobile_ros_bot': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /root/ros2/ros2-ws/build/my_mobile_ros_bot -- -j8 -l8
+Invoked command in '/root/ros2/ros2-ws/build/my_mobile_ros_bot' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /root/ros2/ros2-ws/build/my_mobile_ros_bot -- -j8 -l8
+Invoking command in '/root/ros2/ros2-ws/build/my_mobile_ros_bot': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /root/ros2/ros2-ws/build/my_mobile_ros_bot
+Invoked command in '/root/ros2/ros2-ws/build/my_mobile_ros_bot' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /root/ros2/ros2-ws/build/my_mobile_ros_bot
